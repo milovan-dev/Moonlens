@@ -19,4 +19,7 @@ def create_app(config_class=Config):
     login_manager.login_view = 'main.login'
     login_manager.login_message_category = 'info'
 
+    # Import models so SQLAlchemy recognizes the database tables
+    from app import models
+
     return app
