@@ -22,4 +22,8 @@ def create_app(config_class=Config):
     # Import models so SQLAlchemy recognizes the database tables
     from app import models
 
+    # Register blueprints
+    from app.routes import main as main_blueprint
+    app.register_blueprint(main_blueprint)
+
     return app
