@@ -1,17 +1,30 @@
 {% extends "base.html" %}
 
-{% block title %}Gallery - Moonlens{% endblock %}
+{% block title %}Gallery - Moonlens Photography{% endblock %}
 
 {% block content %}
-<div class="text-center my-5">
-    <h1 class="display-4 fw-bold">Moonlens Photography</h1>
-    <p class="lead text-secondary">A minimal portfolio showcase for visual stories.</p>
-</div>
+<section class="gallery-hero">
+    <h1 class="gallery-title">Portfolio Gallery</h1>
+    <p class="gallery-subtitle">A collection of captured moments and visual stories.</p>
+</section>
 
-<div class="row g-4">
-    <!-- Placeholder poruka dok ne dodamo prve slike -->
-    <div class="col-12 text-center text-muted my-5">
-        <p class="fs-5">No photos uploaded yet. Check back soon!</p>
-    </div>
-</div>
+<section class="gallery-grid">
+    {% if photos %}
+        {% for photo in photos %}
+            <article class="gallery-card">
+                <div class="gallery-image-wrapper">
+                    <img src="{{ url_for('static', filename='uploads/' ~ photo.filename) }}" alt="{{ photo.title }}" class="gallery-image">
+                </div>
+                <div class="gallery-card-body">
+                    <h3 class="photo-title">{{ photo.title }}</h3>
+                    <p class="photo-category">{{ photo.category }}</p>
+                </div>
+            </article>
+        {% endfor %}
+    {% else %}
+        <div class="empty-gallery">
+            <p>No photos uploaded yet.</p>
+        </div>
+    {% endif %}
+</section>
 {% endblock %}

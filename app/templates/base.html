@@ -1,4 +1,3 @@
-<!--base.html for DRY strategy, Don't repeat yourself-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,70 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Moonlens - Photography Portfolio{% endblock %}</title>
     
-    <!--Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <!--Custom CSS-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="bg-dark text-light d-flex flex-column min-vh-100">
+<body>
 
-    <!--Navigation Bar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-uppercase" href="{{ url_for('main.index') }}">Moonlens</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.index') }}">Gallery</a>
-                    </li>
-                   {% if current_user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Upload</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-danger" href="#">Logout</a>
-                        </li>
+    <!--Header / Nav-->
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="{{ url_for('main.index') }}" class="logo">Moonlens</a>
+            
+            <nav class="site-nav">
+                <ul class="nav-list">
+                    <li><a href="{{ url_for('main.index') }}" class="nav-link">Gallery</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li><a href="#" class="nav-link">Upload</a></li>
+                        <li><a href="#" class="nav-link btn-logout">Logout</a></li>
                     {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
-                        </li>
+                        <li><a href="#" class="nav-link">Login</a></li>
                     {% endif %}
                 </ul>
-            </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!--System Flash Messages-->
-    <div class="container mt-3">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
+    <!--Flash messages-->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="container flash-messages">
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <div class="flash-message flash-{{ category }}">
+                        <span>{{ message }}</span>
                     </div>
                 {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </div>
+            </div>
+        {% endif %}
+    {% endwith %}
 
-    <!--Dynamic Content Block-->
-    <main class="container my-4 flex-grow-1">
+    <!--Main-->
+    <main class="container main-content">
         {% block content %}{% endblock %}
     </main>
 
     <!--Footer-->
-    <footer class="bg-black text-center text-muted py-3 mt-auto border-top border-secondary">
+    <footer class="site-footer">
         <div class="container">
-            <small>&copy; 2026 Moonlens Photography. All rights reserved.</small>
+            <p>&copy; 2026 Moonlens Photography. All rights reserved.</p>
         </div>
     </footer>
 
-    <!--Bootstrap-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
 </body>
 </html>
