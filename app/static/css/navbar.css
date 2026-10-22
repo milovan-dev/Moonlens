@@ -1,0 +1,88 @@
+/*Main head*/
+.site-header {
+    background-color: var(--card-bg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/*Nav container*/
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Logo*/
+.logo {
+    font-family: var(--font-nav);
+    font-style: italic;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: 1px;
+}
+
+.logo:hover {
+    color: var(--accent-color);
+}
+
+/*Link list*/
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+/*Links*/
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: var(--font-nav);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-main);
+    position: relative;
+    padding: 5px 0;
+}
+
+/*Hover effect*/
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-main);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/*Btn for logout*/
+.btn-logout {
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 6px 16px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.btn-logout::after {
+    display: none;
+}
+
+.btn-logout:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+}
