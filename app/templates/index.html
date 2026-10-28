@@ -1,30 +1,49 @@
 {% extends "base.html" %}
 
-{% block title %}Gallery - Moonlens Photography{% endblock %}
+{% block title %}Moonlens - Fotografski Portfolio{% endblock %}
 
 {% block content %}
-<section class="gallery-hero">
-    <h1 class="gallery-title">Portfolio Gallery</h1>
-    <p class="gallery-subtitle">A collection of captured moments and visual stories.</p>
-</section>
+<!-- Zajednički omotač koji drži pozadinsku sliku za obje sekcije -->
+<div class="hero-wrapper" style="background-image: url('{{ url_for('static', filename='images/rezervisi-termin.png') }}');">
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-wrapper-content">
+        <!-- Hero Sekcija -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Svet kroz moj objektiv ima drugaciji ritam</h1>
+                <p class="hero-subtitle">Fotografišem emociju, beležim trenutak</p>
+                
+                <div class="hero-actions">
+                    <a href="#" class="btn-hero btn-primary">Rezerviši termin</a>
+                    <a href="#gallery" class="btn-hero btn-secondary">Istraži galeriju</a>
+                </div>
+            </div>
+        </section>
 
-<section class="gallery-grid">
-    {% if photos %}
-        {% for photo in photos %}
-            <article class="gallery-card">
-                <div class="gallery-image-wrapper">
-                    <img src="{{ url_for('static', filename='uploads/' ~ photo.filename) }}" alt="{{ photo.title }}" class="gallery-image">
+        <!-- Sekcija Usluge (sada unutar istog omotača) -->
+        <section class="services-section">
+            <div class="services-header">
+                <h2 class="section-title">Usluge & Fotografisanje</h2>
+                <p class="section-subtitle">Prilagođeno vašim željama i posebnim trenucima</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Portretna Fotografija</h3>
+                    <p>Individualni i umetnički portreti na lokaciji ili u studiju, fokusirani na vašu autentičnost.</p>
                 </div>
-                <div class="gallery-card-body">
-                    <h3 class="photo-title">{{ photo.title }}</h3>
-                    <p class="photo-category">{{ photo.category }}</p>
+                <div class="service-card">
+                    <h3>Proslave & Događaji</h3>
+                    <p>Beženje spontanih trenutaka i emocija sa vaših najvažnijih proslava i događaja.</p>
                 </div>
-            </article>
-        {% endfor %}
-    {% else %}
-        <div class="empty-gallery">
-            <p>No photos uploaded yet.</p>
-        </div>
-    {% endif %}
-</section>
+                <div class="service-card">
+                    <h3>Komercijalna Fotografija</h3>
+                    <p>Profesionalne fotografije proizvoda i brendova namenjene marketingu i društvenim mrežama.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
 {% endblock %}
