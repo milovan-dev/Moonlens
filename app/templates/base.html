@@ -8,6 +8,7 @@
     <!--Custom CSS-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
     <!-- Google Fonts: Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,12 +27,6 @@
                     <li><a href="{{ url_for('main.index') }}" class="nav-link">O meni</a></li>
                     <li><a href="{{ url_for('main.index') }}" class="nav-link">Usluge</a></li>
                     <li><a href="{{ url_for('main.index') }}" class="nav-link">Kontakt</a></li>
-                    {% if current_user.is_authenticated %}
-                        <li><a href="#" class="nav-link">Dodaj sliku</a></li>
-                        <li><a href="#" class="nav-link btn-logout">Odjava</a></li>
-                    {% else %}
-                        <li><a href="#" class="nav-link">Prijava</a></li>
-                    {% endif %}
                 </ul>
             </nav>
         </div>
@@ -57,8 +52,21 @@
 
     <!--Footer-->
     <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2026 Moonlens Photography. All rights reserved.</p>
+        <div class="container footer-container">
+            <p class="footer-copy">&copy; 2026 Moonlens</p>
+            <ul class="footer-links">
+                <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                <li><a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+                <li><a href="#">Kontakt</a></li>
+                <li><a href="#">Usluge</a></li>
+                
+                {% if current_user.is_authenticated %}
+                    <li><a href="#" class="nav-link">Dodaj sliku</a></li>
+                    <li><a href="#" class="footer-auth">Odjava</a></li>
+                {% else %}
+                    <li><a href="#" class="footer-auth">Prijava</a></li>
+                {% endif %}
+            </ul>
         </div>
     </footer>
 
