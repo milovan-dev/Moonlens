@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Dodaj novu sliku - Moonlens{% endblock %}
+
+{% block content %}
+<div class="upload-page-container">
+    <div class="upload-card">
+        <h1 class="page-title">Dodaj novu sliku</h1>
+        <p class="page-subtitle">Otpremi fotografiju u svoju portfolio galeriju</p>
+
+        <form method="POST" enctype="multipart/form-data" class="upload-form">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.title.label(class="form-label") }}
+                {{ form.title(class="form-input", placeholder="Unesi naslov fotografije") }}
+                {% for error in form.title.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.category.label(class="form-label") }}
+                {{ form.category(class="form-input", placeholder="npr. Portreti, Priroda...") }}
+                {% for error in form.category.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.description.label(class="form-label") }}
+                {{ form.description(class="form-textarea", placeholder="Kratak opis ili detalji o fotografiji (opcionalno)") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.image.label(class="form-label") }}
+                {{ form.image(class="form-file-input") }}
+                {% for error in form.image.errors %}
+                    <span class="error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-actions">
+                {{ form.submit(class="btn-primary btn-submit") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

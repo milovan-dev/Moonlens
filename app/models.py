@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # Import database and login manager instances from application package
 from app import db, login_manager
 
+
 # Flask-Login callback to load a user by ID from the database
 @login_manager.user_loader
 def load_user(user_id):

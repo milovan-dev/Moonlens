@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} Galerija - Moonlens {% endblock %}
+
+{% block content %}
+
+<div class="gallery-page-container">
+    <!-- Zaglavlje stranice -->
+    <header class="page-header">
+        <h1 class="page-title">Portfolio Galerija</h1>
+        <p class="page-subtitle">Kolekcija fotografija razvrstanih po trenucima i motivima</p>
+    </header>
+
+    <!-- Mreža za fotografije -->
+    <main class="gallery-grid-section">
+        <div class="gallery-grid">
+            {% if photos %}
+                {% for photo in photos %}
+                    <div class="gallery-card">
+                        <div class="gallery-image-wrapper">
+                            <img src="{{ url_for('static', filename='uploads/' + photo.image_file) }}" alt="{{ photo.title }}" class="gallery-image" loading="lazy">
+                                 alt="{{ photo.title }}" 
+                                 class="gallery-image" 
+                                 loading="lazy">
+                            <div class="gallery-card-overlay">
+                                <span class="photo-category">{{ photo.category if photo.category else 'Fotografija' }}</span>
+                                <h3 class="photo-title">{{ photo.title }}</h3>
+                                <p class="photo-date">{{ photo.created_at.strftime('%d.%m.%Y.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-photos-container">
+                    <p class="no-photos-text">Trenutno nema objavljenih fotografija u galeriji.</p>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+</div>
+
+{% endblock %}

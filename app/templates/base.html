@@ -21,7 +21,7 @@
             
             <nav class="site-nav">
                 <ul class="nav-list">
-                    <li><a href="{{ url_for('main.index') }}" class="nav-link">Galerija</a></li>
+                    <li><a href="{{ url_for('main.gallery') }}" class="nav-link">Galerija</a></li>
                     <li><a href="{{ url_for('main.index') }}" class="nav-link">O meni</a></li>
                     <li><a href="{{ url_for('main.index') }}" class="nav-link">Usluge</a></li>
                     <li><a href="{{ url_for('main.index') }}" class="nav-link">Kontakt</a></li>
@@ -59,10 +59,10 @@
                 <li><a href="#">Usluge</a></li>
                 
                 {% if current_user.is_authenticated %}
-                    <li><a href="#" class="nav-link">Dodaj sliku</a></li>
-                    <li><a href="#" class="footer-auth">Odjava</a></li>
+                <li><a href="{{ url_for('main.upload_photo') }}" class="nav-link">Dodaj sliku</a></li>
+                <li><a href="{{ url_for('main.logout') }}" class="footer-auth">Odjava</a></li>
                 {% else %}
-                    <li><a href="#" class="footer-auth">Prijava</a></li>
+                <li><a href="{{ url_for('main.login') }}" class="footer-auth">Prijava</a></li>
                 {% endif %}
             </ul>
         </div>
