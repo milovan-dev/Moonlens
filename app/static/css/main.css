@@ -2,4 +2,6 @@
 @import 'modules/navbar.css';
 @import 'modules/footer.css';
 @import 'modules/gallery.css';
-@import 'modules/index.css'
+@import 'modules/index.css';
+@import 'modules/login.css';
+@import 'modules/upload.css';

@@ -1,0 +1,85 @@
+/* Upload Container - centriranje forme */
+.upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+/* Upload Card - izgled okvira forme */
+.upload-card {
+    width: 100%;
+    max-width: 540px;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Form Elements za upload (naslovi, inputi, textarea, select) */
+.upload-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.upload-form .form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    color: #333333;
+}
+
+.upload-form .form-input,
+.upload-form .form-textarea,
+.upload-form .form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+    background-color: #fff;
+}
+
+.upload-form .form-input:focus,
+.upload-form .form-textarea:focus,
+.upload-form .form-select:focus {
+    outline: none;
+    border-color: #1a1a1a;
+}
+
+.upload-form .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Specifičan izgled za fajl input (izbor slike) */
+.upload-form input[type="file"] {
+    padding: 0.5rem;
+    background-color: #fafafa;
+    cursor: pointer;
+}
+
+/* Dugme za potvrdu */
+.upload-form .btn-submit {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 1rem;
+}
+
+.upload-form .btn-submit:hover {
+    background-color: #333333;
+}
