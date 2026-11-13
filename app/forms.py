@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, TextAreaField, SubmitField
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from wtforms import StringField, TextAreaField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
 from wtforms import PasswordField
@@ -11,11 +11,20 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Prijavi se')
 
 class PhotoForm(FlaskForm):
-    title = StringField('Naslov slike', validators=[DataRequired()])
+    title = StringField('Naslov fotografije', validators=[DataRequired()])
     description = TextAreaField('Opis')
-    category = StringField('Kategorija', validators=[DataRequired()], default='General')
-    image = FileField('Slika', validators=[
-        DataRequired(),
-        FileAllowed(['jpg', 'png', 'jpeg'], 'Dozvoljene su samo slike (jpg, jpeg, png)!')
+    category = SelectField('Kategorija', choices=[
+        ('krstenje', 'Krštenje'),
+        ('rodjendan', 'Rođendani'),
+        ('prom', 'Prom'),
+        ('women', 'Women'),
+        ('man', 'Man'),
+        ('model', 'Model'),
+        ('arhitektura','Arhitektura'),
+        ('priroda','Priroda')
+    ], validators=[DataRequired()])
+    photo = FileField('Izaberi sliku', validators=[
+        FileRequired(),
+        FileAllowed(['jpg', 'jpeg', 'png', 'webp'], 'Dozvoljene su samo slike!')
     ])
-    submit = SubmitField('Sačuvaj sliku')
+    submit = SubmitField('Objavi fotografiju')

@@ -24,7 +24,7 @@ def upload_photo():
     form = PhotoForm()
     if form.validate_on_submit():
         # Uzimamo otpremljeni fajl
-        f = form.image.data
+        f = form.photo.data
         filename = secure_filename(f.filename)
         
         # Pravimo jedinstven naziv fajla da sprečimo preklapanje
