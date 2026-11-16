@@ -14,6 +14,7 @@ class PhotoForm(FlaskForm):
     title = StringField('Naslov fotografije', validators=[DataRequired()])
     description = TextAreaField('Opis')
     category = SelectField('Kategorija', choices=[
+        (' ','Izaberi kategoriju'),
         ('krstenje', 'Krštenje'),
         ('rodjendan', 'Rođendani'),
         ('prom', 'Prom'),

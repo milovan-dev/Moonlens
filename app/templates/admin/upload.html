@@ -31,7 +31,10 @@
 
             <div class="form-group">
                 {{ form.photo.label(class="form-label") }}
-                {{ form.photo(class="form-file-input") }}
+                <div class="file-input-wrapper">
+                    {{ form.photo(class="form-file-input", id="photo-input") }}
+                    <button type="button" id="clear-file-btn" class="btn-clear-file" title="Ukloni sliku">&times;</button>
+                </div>
                 {% for error in form.photo.errors %}
                     <span class="error-message">{{ error }}</span>
                 {% endfor %}
@@ -43,4 +46,7 @@
         </form>
     </div>
 </div>
+
+<script src="{{ url_for('static', filename='js/upload.js') }}"></script>
 {% endblock %}
+

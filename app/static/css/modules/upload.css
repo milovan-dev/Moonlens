@@ -67,7 +67,33 @@
 .upload-form input[type="file"] {
     padding: 0.4rem;
     background-color: #fafafa;
+    color: black;
     cursor: pointer;
+}
+
+/* Kontejner koji drži input i X dugme u istoj liniji */
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+/* Stil za X dugme */
+.btn-clear-file {
+    display: none; /* Inicijalno je sakriveno dok se ne izabere slika */
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #888888;
+    cursor: pointer;
+    padding: 0 2px;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.btn-clear-file:hover {
+    color: #e74c3c; /* Crvena boja na hover da naznači brisanje */
 }
 
 .upload-form .btn-submit {
