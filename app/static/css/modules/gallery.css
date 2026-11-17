@@ -1,102 +1,203 @@
-
-/* Sekcija galerije */
-.gallery-section {
-    padding: 40px 0;
+/* Opšti kontejner galerije */
+.gallery-page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
-/* Zaglavlje galerije */
-.gallery-header {
+/* Zaglavlje stranice */
+.page-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
-.gallery-title {
-    font-family: var(--font-heading);
+.page-header .page-title {
     font-size: 2.5rem;
     color: var(--text-main);
     margin-bottom: 10px;
 }
 
-.gallery-subtitle {
-    color: var(--text-muted);
-    font-size: 1rem;
-    font-style: italic;
+.page-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted, #aaa);
 }
 
-/* Mreža (Grid) za fotografije */
+/* Navigacija sa dugmićima koja uvek ostaje vidljiva na vrhu */
+.gallery-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 50px;
+    position: sticky;
+    top: 95px; /* Podesi npr. na 70px ako iznad imaš fiksni krovni meni sajta */
+    z-index: 100; /* Veći z-index da uvek bude iznad slika i teksta */
+    background-color: rgba(18, 18, 18, 0.9); /* Tamna pozadina da se tekst ne providi */
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+}
+
+.filter-btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: transparent;
+    color: var(--text-main, #bbb);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+/* Stil kada je dugme aktivno */
+.filter-btn.active {
+    background-color: #fff !important;
+    color: #121212 !important;
+    border-color: #fff !important;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+/* Sekcija za svaku pojedinačnu kategoriju */
+.category-section {
+    margin-bottom: 60px;
+    /* Sprečava da fiksirani navbar / filteri prekriju naslov sekcije pri skrolovanju */
+    scroll-margin-top: 100px; 
+}
+
+.category-heading {
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mreža (Grid) za kartice */
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 24px;
 }
 
-/* Pojedinačna kartica slike */
-.gallery-item {
-    position: relative;
+/* Pojedinačna kartica i slika */
+.gallery-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
     overflow: hidden;
-    border-radius: 8px;
-    background-color: var(--card-bg);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    aspect-ratio: 4 / 3; /* Održava uredan oblik kartica */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Slika */
-.gallery-img {
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+}
+
+.gallery-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s ease;
 }
 
-.gallery-item:hover .gallery-img {
+.gallery-card:hover .gallery-image {
     transform: scale(1.05);
 }
 
-/* Overlay sa informacijama koji se pojavljuje na hover */
-.gallery-overlay {
+/* Overlay sa tekstom preko slike */
+.gallery-card-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     padding: 20px;
-    background: linear-gradient(to top, rgba(15, 15, 16, 0.95), transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
 
-.gallery-item:hover .gallery-overlay {
-    opacity: 1;
-}
-
-/* Tekst unutar overlay-a */
 .photo-title {
-    font-family: var(--font-heading);
     font-size: 1.2rem;
-    color: var(--text-main);
-    margin-bottom: 4px;
+    color: #fff;
+    margin: 0 0 5px 0;
+    font-weight: 500;
 }
 
 .photo-date {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: #ccc;
+    margin: 0;
+}
+
+/* Modalni prozor preko celog ekrana */
+.image-modal {
+    display: none; /* Inicijalno sakriveno */
+    position: fixed;
+    z-index: 1000;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9); /* Duboka tamna pozadina */
+    backdrop-filter: blur(5px);
+}
+
+/* Uvećana slika */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 85%;
+    max-height: 85vh; /* Da nikada ne prelazi visinu ekrana */
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {transform: scale(0.9); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+/* Dugme za zatvaranje (X) - veće i bliže centru/slici */
+.modal-close {
+    position: absolute;
+    top: 40px;          /* Prilagodi po potrebi */
+    right: calc(50% - 65vh); /* Drži ga bliže desnoj ivici slike umesto skroz uz ivicu ekrana */
+    color: #fff;
+    font-size: 50px;    /* Povećano sa 40px */
+    font-weight: 400;
+    cursor: pointer;
+    z-index: 1001;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.modal-close:hover {
+    color: #ff4d4d;     /* Blago crvenkasto pri hover-u za bolji efekat */
+    transform: scale(1.1);
 }
 
 /* Poruka kada nema fotografija */
-.no-photos {
-    grid-column: 1 / -1;
+.no-photos-container, .no-photos-text {
     text-align: center;
-    color: var(--text-muted);
-    padding: 60px 0;
-    font-style: italic;
-}
-
-/* Responzivnost za manje ekrane */
-@media (max-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
+    color: var(--text-muted, #aaa);
+    padding: 30px;
+    font-size: 1rem;
 }
