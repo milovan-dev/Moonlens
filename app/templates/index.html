@@ -3,7 +3,7 @@
 {% block title %}Moonlens - Fotografski Portfolio{% endblock %}
 
 {% block content %}
-<!-- Zajednički omotač koji drži pozadinsku sliku za obje sekcije -->
+<!-- Zajednički omotač koji drži pozadinsku sliku za hero i usluge -->
 <div class="hero-wrapper" style="background-image: url('{{ url_for('static', filename='images/rezervisi-termin.png') }}');">
     <div class="hero-overlay"></div>
     
@@ -11,17 +11,16 @@
         <!-- Hero Sekcija -->
         <section class="hero-section">
             <div class="hero-content">
-                <h1 class="hero-title">Svet kroz moj objektiv ima drugaciji ritam</h1>
+                <h1 class="hero-title">Svet kroz moj objektiv ima drugačiji ritam</h1>
                 <p class="hero-subtitle">Fotografišem emociju, beležim trenutak</p>
                 
                 <div class="hero-actions">
                     <a href="#" class="btn-hero btn-primary">Rezerviši termin</a>
-                    <a href="#gallery" class="btn-hero btn-secondary">Istraži galeriju</a>
-                </div>
+                    <a href="{{ url_for('main.gallery') }}" class="btn-hero btn-secondary">Istraži galeriju</a>                </div>
             </div>
         </section>
 
-        <!-- Sekcija Usluge (sada unutar istog omotača) -->
+       <!-- Sekcija Usluge -->
         <section class="services-section">
             <div class="services-header">
                 <h2 class="section-title">Usluge & Fotografisanje</h2>
@@ -30,20 +29,88 @@
 
             <div class="services-grid">
                 <div class="service-card">
-                    <h3>Portretna Fotografija</h3>
-                    <p>Individualni i umetnički portreti na lokaciji ili u studiju, fokusirani na vašu autentičnost.</p>
+                    <div class="service-content">
+                        <h3>Portretna Fotografija</h3>
+                        <p>Individualni i umetnički portreti na lokaciji ili u studiju, fokusirani na vašu autentičnost.</p>
+                    </div>
+                    <a href="#" class="btn-service-book">Rezerviši</a>
                 </div>
                 <div class="service-card">
-                    <h3>Proslave & Događaji</h3>
-                    <p>Beženje spontanih trenutaka i emocija sa vaših najvažnijih proslava i događaja.</p>
+                    <div class="service-content">
+                        <h3>Proslave & Događaji</h3>
+                        <p>Beženje spontanih trenutaka i emocija sa vaših najvažnijih proslava i događaja.</p>
+                    </div>
+                    <a href="#" class="btn-service-book">Rezerviši</a>
                 </div>
                 <div class="service-card">
-                    <h3>Komercijalna Fotografija</h3>
-                    <p>Profesionalne fotografije proizvoda i brendova namenjene marketingu i društvenim mrežama.</p>
+                    <div class="service-content">
+                        <h3>Komercijalna Fotografija</h3>
+                        <p>Profesionalne fotografije proizvoda i brendova namenjene marketingu i društvenim mrežama.</p>
+                    </div>
+                    <a href="#" class="btn-service-book">Rezerviši</a>
                 </div>
             </div>
         </section>
     </div>
 </div>
+
+<!-- SEKCIJA: Izdvojeni radovi (Mini Galerija) -->
+<section class="featured-gallery-section">
+    <div class="container">
+        <div class="section-header-center">
+            <h2 class="section-title">Izdvojeni Radovi</h2>
+            <p class="section-subtitle">Zabeleženi trenuci pretočeni u trajnu uspomenu</p>
+        </div>
+
+        <div class="featured-grid">
+            {% if featured_photos %}
+                {% for photo in featured_photos %}
+                <div class="featured-card">
+                    <img src="{{ url_for('static', filename='uploads/' + photo.image_file) }}" alt="{{ photo.title }}" loading="lazy">
+                    <div class="featured-overlay">
+                        <h3>{{ photo.title }}</h3>
+                        <span>{{ photo.category | capitalize }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Rezervne statične kartice ukoliko se ne prosleđuju posebne izdvojene slike iz rute -->
+                <div class="featured-card placeholder-card">
+                    <div class="placeholder-content"><span>Moonlens Portfolio</span></div>
+                </div>
+                <div class="featured-card placeholder-card">
+                    <div class="placeholder-content"><span>Momenti & Emocije</span></div>
+                </div>
+                <div class="featured-card placeholder-card">
+                    <div class="placeholder-content"><span>Umetnički Izraz</span></div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="featured-action">
+            <a href="{{ url_for('main.gallery') }}" class="btn-hero btn-primary">Pogledaj kompletnu galeriju</a>        </div>
+    </div>
+</section>
+
+<!-- SEKCIJA: O meni (Teaser) -->
+<section class="about-teaser-section">
+    <div class="container about-teaser-grid">
+        <div class="about-teaser-image">
+            <img src="{{ url_for('static', filename='images/rezervisi-termin.png') }}" alt="O meni - fotograf">
+        </div>
+        <div class="about-teaser-content">
+            <h2 class="section-title">Iza Objektiva</h2>
+            <p class="about-lead">Svaka fotografija priča priču koja se ne može opisati rečima.</p>
+            <p class="about-text">
+                Moja strast je hvatanje autentičnih emocija, prirodnog svetla i neponovljivih trenutaka. 
+                Bilo da je reč o intimnom portretu, dinamičnoj proslavi ili komercijalnom projektu, 
+                cilj je uvek isti — stvoriti vizuelnu priču koja ima dušu i trajnu vrednost.
+            </p>
+            <div class="about-actions">
+                <a href="#" class="btn-hero btn-secondary about-btn">Saznaj više o meni</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

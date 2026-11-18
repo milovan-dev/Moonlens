@@ -28,8 +28,6 @@
                     {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('main.upload_photo') }}" class="nav-link">Dodaj sliku</a></li>
                     <li><a href="{{ url_for('main.logout') }}" class="footer-auth">Odjava</a></li>
-                    {% else %}
-                    <li><a href="{{ url_for('main.login') }}" class="footer-auth">Prijava</a></li>
                     {% endif %}
                 </ul>
             </nav>
